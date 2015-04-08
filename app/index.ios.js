@@ -2,8 +2,8 @@
 
 var React = require('react-native');
 var MOCKED_CHAT_DATA = [
-  {member: 'Richard', message: 'To the apple stdore!'},
-  {member: 'Pavan', message: 'HI'},
+  {member: 'Richard', message: 'To the Apple Store!'},
+  {member: 'Pavan', message: 'To the Munchery!'},
   {member: 'Arian', message: 'To the batmobile'}
 ];
 
@@ -20,6 +20,7 @@ var {
 } = React;
 
 var app = React.createClass({
+  // App contains three components: ChatList, Name, and Submit, all within a View tag.
   render: function() {
     return (
       <View style={styles.container}>
@@ -40,10 +41,11 @@ var ChatList = React.createClass({
   },
   render: function() {
     return (
-      <ListView
+      <ListView style={styles.instructions}
+        // Setting the data source
         dataSource={this.state.dataSource}
-        renderRow={(rowData) => <Text>{rowData}</Text>}
-      />
+        // renderRow takes a row entry from the data source and displays it.
+        renderRow={(rowData) => <Text>{rowData}</Text>} />
     );
   },
 });
@@ -111,7 +113,7 @@ var styles = StyleSheet.create({
   instructions: {
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5
+    marginBottom: 200
   }
 });
 
