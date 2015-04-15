@@ -36,11 +36,9 @@ var SignUp = React.createClass({
   toggleCat: function() {
     console.log('Meow!!!');
   },
-
   toggleDog: function() {
     console.log('Woof!!!');
   },
-
   onPress: function() {
     this.props.navigator.push({
       title: 'Chat Room',
