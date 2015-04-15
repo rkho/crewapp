@@ -33,6 +33,14 @@ var options = {
 };
 
 var SignUp = React.createClass({
+  toggleCat: function() {
+    console.log('Meow!!!');
+  },
+
+  toggleDog: function() {
+    console.log('Woof!!!');
+  },
+
   onPress: function() {
     this.props.navigator.push({
       title: 'Chat Room',
@@ -50,6 +58,15 @@ var SignUp = React.createClass({
             ref="form"
             type={LoginFields}
             options={options} />
+
+          <TouchableHighlight style={styles.modalButton} onPress={this.toggleCat} underlayColor="#99d9f4">
+            <Text style={styles.buttonText}>Cats</Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight style={styles.modalButton} onPress={this.toggleDog} underlayColor="#99d9f4">
+            <Text style={styles.buttonText}>Dogs</Text>
+          </TouchableHighlight>
+
           <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor="#99d9f4">
             <Text style={styles.buttonText}>Create Account</Text>
           </TouchableHighlight>

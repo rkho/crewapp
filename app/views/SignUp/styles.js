@@ -24,7 +24,15 @@ var styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
-    alignSelf: 'flex-end',
+    justifyContent: 'center'
+  },
+  modalButton: {
+    height: 36,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
     justifyContent: 'center'
   }
 });
