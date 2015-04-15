@@ -4,7 +4,7 @@ var React = require('react-native');
 var t = require('tcomb-form-native');
 var Form = t.form.Form;
 
-var ChatRoom = require('../ChatRoom');
+var Survey = require('../Survey');
 
 var {
   Text,
@@ -34,15 +34,18 @@ var options = {
 
 var SignUp = React.createClass({
   toggleCat: function() {
-    console.log('Meow!!!');
+    this.onPress('Cats');
   },
   toggleDog: function() {
-    console.log('Woof!!!');
+    this.onPress('Dogs');
   },
-  onPress: function() {
+  onPress: function(val) {
     this.props.navigator.push({
-      title: 'Chat Room',
-      component: ChatRoom
+      title: 'Survey',
+      component: Survey,
+      passProps: {
+        choice: val
+      }
     });
   },
   propTypes: {
@@ -56,17 +59,13 @@ var SignUp = React.createClass({
             ref="form"
             type={LoginFields}
             options={options} />
-
+          <Text style={styles.title}>Pick One!</Text>
           <TouchableHighlight style={styles.modalButton} onPress={this.toggleCat} underlayColor="#99d9f4">
             <Text style={styles.buttonText}>Cats</Text>
           </TouchableHighlight>
 
           <TouchableHighlight style={styles.modalButton} onPress={this.toggleDog} underlayColor="#99d9f4">
             <Text style={styles.buttonText}>Dogs</Text>
-          </TouchableHighlight>
-
-          <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor="#99d9f4">
-            <Text style={styles.buttonText}>Create Account</Text>
           </TouchableHighlight>
         </View>
       </View>
