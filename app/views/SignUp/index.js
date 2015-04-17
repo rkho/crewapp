@@ -39,8 +39,21 @@ var SignUp = React.createClass({
       username: null,
       password: null,
       token: null,
-      group: null
+      group: null,
+      location: null
     };
+  },
+  componentWillMount: function() {
+    var that = this;
+    var onSuccess = function(position) {
+      that.setState({location: position});
+      console.log(that.state);
+    };
+    var onError = function(error) {
+      AlertIOS.alert('A location is needed!');
+      console.log(error);
+    };
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
   },
   checkValidity: function() {
     var request = new XMLHttpRequest();
