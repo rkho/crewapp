@@ -6,6 +6,7 @@ var SplashPage = require('./views/SplashPage');
 var {
   AppRegistry,
   NavigatorIOS,
+  Navigator
 } = React;
 
 // App container (top of the tree)
