@@ -3,12 +3,13 @@ var { StyleSheet } = React;
 
 var styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
+    flex: 1,
     justifyContent: 'center',
     backgroundColor: '#ffffff'
   },
   formBox: {
-    flex: 1
+    marginTop: 30,
+    position: 'relative'
   },
   buttonText: {
     fontSize: 18,
@@ -21,7 +22,6 @@ var styles = StyleSheet.create({
     borderColor: '#48BBEC',
     borderWidth: 1,
     marginBottom: 10,
-    // alignSelf: 'flex-end',
     justifyContent: 'center'
   },
   grayButton: {
@@ -30,7 +30,6 @@ var styles = StyleSheet.create({
     borderColor: '#CCCCCC',
     borderWidth: 1,
     marginBottom: 10,
-    // alignSelf: 'flex-end',
     justifyContent: 'center'
   },
   scrollView: {

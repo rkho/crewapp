@@ -4,6 +4,8 @@ var React = require('react-native');
 var t = require('tcomb-form-native');
 var Form = t.form.Form;
 
+var MakePlans = require('../MakePlans');
+
 var io = require('react-native-sockets-io');
 
 var name = name || 'anonymous';
@@ -33,8 +35,16 @@ var ChatRoom = React.createClass({
   getInitialState: function() {
     return {
       io: io('http://chat.trycrewapp.com', {jsonp: false}),
-      room: this.props.group
+      room: this.props.group,
+      place: this.props.place,
+      address: this.props.address
     };
+  },
+  navigateTo: function() {
+    this.props.navigator.push({
+      title: 'Make Plans',
+      component: MakePlans
+    });
   },
   propTypes: {
     group: React.PropTypes.any
@@ -43,7 +53,6 @@ var ChatRoom = React.createClass({
     this.state.io.emit('chat message', {name: name, chat: 'hello'});
     this.getRoom();
   },
-
   getRoom: function() {
     var that = this;
     this.state.io.on('connect', function() {
@@ -57,6 +66,9 @@ var ChatRoom = React.createClass({
       <View style={styles.container}>
         <ChatList socket={this.state.io} />
         <MessageForm socket={this.state.io} />
+        <TouchableHighlight style={styles.grayButton} onPress={this.navigateTo} underlayColor="#99d9f4">
+          <Text style={styles.buttonText}>Make Plans</Text>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -71,8 +83,6 @@ var ChatList = React.createClass({
     socket: React.PropTypes.any
   },
   componentDidMount: function(){
-  //Must specifiy 'jsonp: false' since react native doesn't provide the dom
-  //and thus wouldn't support creating an iframe/script tag
     this.props.socket.on('message', (msg) =>{
       this.state.messages.push(msg);
       this.forceUpdate();
@@ -81,7 +91,6 @@ var ChatList = React.createClass({
   render: function(){
     return (
       <ScrollView
-        // onScroll={() => { console.log('onScroll!'); }}
         scrollEventThrottle={200}
         contentInset={{top: 0}}
         style={styles.scrollView}>
@@ -98,18 +107,16 @@ var ChatList = React.createClass({
 // Unified Input Field
 
 var MessageForm = React.createClass({
+  componentDidMount: function() {
+    console.log(this.props);
+  },
   onPress: function() {
     var value = this.refs.form.getValue();
     if (value) {
       this.send(value);
     }
   },
-  propTypes: {
-    socket: React.PropTypes.any
-  },
   send: function(message) {
-    // Name is still being referenced here because of line 9 above
-    // will be needed after we bring in authentication too.
     this.props.socket.emit('message', message);
   },
 
